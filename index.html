@@ -1,0 +1,496 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Red+Hat+Display:ital,wght@0,300..900;1,300..900&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="css/style.css" />
+  </head>
+  <body>
+    <div class="container">
+      <section class="deserts">
+        <h1>Deserts</h1>
+        <div class="cards">
+          <div class="card">
+            <div class="image">
+              <img src="assets/images/image-waffle-desktop.jpg" alt="" />
+            </div>
+            <div class="add">
+              <div class="add1">
+                <span cart-tray>
+                  <img src="assets/images/icon-add-to-cart.svg" alt="" />
+                </span>
+
+                <p>Add to Cart</p>
+              </div>
+              <div class="add2">
+                <div class="icons">
+                  <svg
+                    id="decrement"
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="10"
+                    height="2"
+                    viewBox="0 0 10 2"
+                  >
+                    <path fill="currentValue" d="M0 .375h10v1.25H0V.375Z" />
+                  </svg>
+                </div>
+                <div class="amount">0</div>
+                <div class="icons">
+                  <svg
+                    id="increment"
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="10"
+                    height="10"
+                    viewBox="0 0 10 10"
+                  >
+                    <path fill="currentValue" d="M10
+                    4.375H5.625V0h-1.25v4.375H0v1.25h4.375V10h1.25V5.625H10v-1.25Z"
+                    />
+                  </svg>
+                </div>
+              </div>
+            </div>
+            <div class="cart-description">
+              <p class="food-name">Waffle</p>
+              <h5>Waffle with berries</h5>
+              <div class="dollar-wrap">
+                <my-span>$</my-span>
+                <span class="red">6.50</span>
+              </div>
+              
+            </div>
+          </div>
+          <div class="card">
+            <div class="image">
+              <img src="assets/images/image-creme-brulee-desktop.jpg" alt="" />
+            </div>
+            <div class="add">
+              <div class="add1">
+                <span cart-tray>
+                  <img src="assets/images/icon-add-to-cart.svg" alt="" />
+                </span>
+
+                <p>Add to Cart</p>
+              </div>
+              <div class="add2">
+                <div class="icons">
+                  <svg
+                    id="decrement"
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="10"
+                    height="2"
+                    viewBox="0 0 10 2"
+                  >
+                    <path fill="currentValue" d="M0 .375h10v1.25H0V.375Z" />
+                  </svg>
+                </div>
+                <div class="amount">0</div>
+                <div class="icons">
+                  <svg
+                    id="increment"
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="10"
+                    height="10"
+                    viewBox="0 0 10 10"
+                  >
+                    <path fill="currentValue" d="M10
+                    4.375H5.625V0h-1.25v4.375H0v1.25h4.375V10h1.25V5.625H10v-1.25Z"
+                    />
+                  </svg>
+                </div>
+              </div>
+            </div>
+            <div class="cart-description">
+              <p class="food-name">Creme Brulee</p>
+              <h5>Vanilla Bean creme Brulee</h5>
+              <span class="red">6.50</span>
+            </div>
+          </div>
+          <div class="card">
+            <div class="image">
+              <img src="assets/images/image-macaron-desktop.jpg" alt="" />
+            </div>
+            <div class="add">
+              <div class="add1">
+                <span cart-tray>
+                  <img src="assets/images/icon-add-to-cart.svg" alt="" />
+                </span>
+
+                <p>Add to Cart</p>
+              </div>
+              <div class="add2">
+                <div class="icons">
+                  <svg
+                    id="decrement"
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="10"
+                    height="2"
+                    viewBox="0 0 10 2"
+                  >
+                    <path fill="currentValue" d="M0 .375h10v1.25H0V.375Z" />
+                  </svg>
+                </div>
+                <div class="amount">0</div>
+                <div class="icons">
+                  <svg
+                    id="increment"
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="10"
+                    height="10"
+                    viewBox="0 0 10 10"
+                  >
+                    <path fill="currentValue" d="M10
+                    4.375H5.625V0h-1.25v4.375H0v1.25h4.375V10h1.25V5.625H10v-1.25Z"
+                    />
+                  </svg>
+                </div>
+              </div>
+            </div>
+            <div class="cart-description">
+              <p class="food-name">Macaroon</p>
+              <h5>Waffle with berries</h5>
+              <span class="red">6.50</span>
+            </div>
+          </div>
+          <div class="card">
+            <div class="image">
+              <img src="assets/images/image-tiramisu-desktop.jpg" alt="" />
+            </div>
+            <div class="add">
+              <div class="add1">
+                <span cart-tray>
+                  <img src="assets/images/icon-add-to-cart.svg" alt="" />
+                </span>
+
+                <p>Add to Cart</p>
+              </div>
+              <div class="add2">
+                <div class="icons">
+                  <svg
+                    id="decrement"
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="10"
+                    height="2"
+                    viewBox="0 0 10 2"
+                  >
+                    <path fill="currentValue" d="M0 .375h10v1.25H0V.375Z" />
+                  </svg>
+                </div>
+                <div class="amount">0</div>
+                <div class="icons">
+                  <svg
+                    id="increment"
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="10"
+                    height="10"
+                    viewBox="0 0 10 10"
+                  >
+                    <path fill="currentValue" d="M10
+                    4.375H5.625V0h-1.25v4.375H0v1.25h4.375V10h1.25V5.625H10v-1.25Z"
+                    />
+                  </svg>
+                </div>
+              </div>
+            </div>
+            <div class="cart-description">
+              <p class="food-name">Waffle</p>
+              <h5>Waffle with berries</h5>
+              <span class="red">$6.50</span>
+            </div>
+          </div>
+          <div class="card">
+            <div class="image">
+              <img src="assets/images/image-baklava-desktop.jpg" alt="" />
+            </div>
+            <div class="add">
+              <div class="add1">
+                <span cart-tray>
+                  <img src="assets/images/icon-add-to-cart.svg" alt="" />
+                </span>
+
+                <p>Add to Cart</p>
+              </div>
+              <div class="add2">
+                <div class="icons">
+                  <svg
+                    id="decrement"
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="10"
+                    height="2"
+                    viewBox="0 0 10 2"
+                  >
+                    <path fill="currentValue" d="M0 .375h10v1.25H0V.375Z" />
+                  </svg>
+                </div>
+                <div class="amount">0</div>
+                <div class="icons">
+                  <svg
+                    id="increment"
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="10"
+                    height="10"
+                    viewBox="0 0 10 10"
+                  >
+                    <path fill="currentValue" d="M10
+                    4.375H5.625V0h-1.25v4.375H0v1.25h4.375V10h1.25V5.625H10v-1.25Z"
+                    />
+                  </svg>
+                </div>
+              </div>
+            </div>
+            <div class="cart-description">
+              <p class="food-name">Waffle</p>
+              <h5>Waffle with berries</h5>
+              <span class="red">$6.50</span>
+            </div>
+          </div>
+          <div class="card">
+            <div class="image">
+              <img src="assets/images/image-meringue-desktop.jpg" alt="" />
+            </div>
+            <div class="add">
+              <div class="add1">
+                <span cart-tray>
+                  <img src="assets/images/icon-add-to-cart.svg" alt="" />
+                </span>
+
+                <p>Add to Cart</p>
+              </div>
+              <div class="add2">
+                <div class="icons">
+                  <svg
+                    id="decrement"
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="10"
+                    height="2"
+                    viewBox="0 0 10 2"
+                  >
+                    <path fill="currentValue" d="M0 .375h10v1.25H0V.375Z" />
+                  </svg>
+                </div>
+                <div class="amount">0</div>
+                <div class="icons">
+                  <svg
+                    id="increment"
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="10"
+                    height="10"
+                    viewBox="0 0 10 10"
+                  >
+                    <path fill="currentValue" d="M10
+                    4.375H5.625V0h-1.25v4.375H0v1.25h4.375V10h1.25V5.625H10v-1.25Z"
+                    />
+                  </svg>
+                </div>
+              </div>
+            </div>
+            <div class="cart-description">
+              <p class="food-name">Waffle</p>
+              <h5>Waffle with berries</h5>
+              <span class="red">$6.50</span>
+            </div>
+          </div>
+          <div class="card">
+            <div class="image">
+              <img src="assets/images/image-cake-desktop.jpg" alt="" />
+            </div>
+            <div class="add">
+              <div class="add1">
+                <span cart-tray>
+                  <img src="assets/images/icon-add-to-cart.svg" alt="" />
+                </span>
+
+                <p>Add to Cart</p>
+              </div>
+              <div class="add2">
+                <div class="icons">
+                  <svg
+                    id="decrement"
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="10"
+                    height="2"
+                    viewBox="0 0 10 2"
+                  >
+                    <path fill="currentValue" d="M0 .375h10v1.25H0V.375Z" />
+                  </svg>
+                </div>
+                <div class="amount">0</div>
+                <div class="icons">
+                  <svg
+                    id="increment"
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="10"
+                    height="10"
+                    viewBox="0 0 10 10"
+                  >
+                    <path fill="currentValue" d="M10
+                    4.375H5.625V0h-1.25v4.375H0v1.25h4.375V10h1.25V5.625H10v-1.25Z"
+                    />
+                  </svg>
+                </div>
+              </div>
+            </div>
+            <div class="cart-description">
+              <p class="food-name">Waffle</p>
+              <h5>Waffle with berries</h5>
+              <span class="red">$6.50</span>
+            </div>
+          </div>
+          <div class="card">
+            <div class="image">
+              <img src="assets/images/image-brownie-desktop.jpg" alt="" />
+            </div>
+            <div class="add">
+              <div class="add1">
+                <span cart-tray>
+                  <img src="assets/images/icon-add-to-cart.svg" alt="" />
+                </span>
+
+                <p>Add to Cart</p>
+              </div>
+              <div class="add2">
+                <div class="icons">
+                  <svg
+                    id="decrement"
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="10"
+                    height="2"
+                    viewBox="0 0 10 2"
+                  >
+                    <path fill="currentValue" d="M0 .375h10v1.25H0V.375Z" />
+                  </svg>
+                </div>
+                <div class="amount">0</div>
+                <div class="icons">
+                  <svg
+                    id="increment"
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="10"
+                    height="10"
+                    viewBox="0 0 10 10"
+                  >
+                    <path fill="currentValue" d="M10
+                    4.375H5.625V0h-1.25v4.375H0v1.25h4.375V10h1.25V5.625H10v-1.25Z"
+                    />
+                  </svg>
+                </div>
+              </div>
+            </div>
+            <div class="cart-description">
+              <p class="food-name">Waffle</p>
+              <h5>Waffle with berries</h5>
+              <span class="red">$6.50</span>
+            </div>
+          </div>
+          <div class="card">
+            <div class="image">
+              <img src="assets/images/image-panna-cotta-desktop.jpg" alt="" />
+            </div>
+            <div class="add">
+              <div class="add1">
+                <span cart-tray>
+                  <img src="assets/images/icon-add-to-cart.svg" alt="" />
+                </span>
+
+                <p>Add to Cart</p>
+              </div>
+              <div class="add2">
+                <div class="icons">
+                  <svg
+                    id="decrement"
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="10"
+                    height="2"
+                    viewBox="0 0 10 2"
+                  >
+                    <path fill="currentValue" d="M0 .375h10v1.25H0V.375Z" />
+                  </svg>
+                </div>
+                <div class="amount">0</div>
+                <div class="icons">
+                  <svg
+                    id="increment"
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="10"
+                    height="10"
+                    viewBox="0 0 10 10"
+                  >
+                    <path fill="currentValue" d="M10
+                    4.375H5.625V0h-1.25v4.375H0v1.25h4.375V10h1.25V5.625H10v-1.25Z"
+                    />
+                  </svg>
+                </div>
+              </div>
+            </div>
+            <div class="cart-description">
+              <p class="food-name">Waffle</p>
+              <h5>Waffle with berries</h5>
+              <span class="red">$6.50</span>
+            </div>
+          </div>
+          
+          
+          
+          
+        </div>
+      </section>
+      <section class="cart">
+        <div class="order-container">
+
+            
+        </div>
+        <div class="no-order remove">
+          <img src="assets/images/illustration-empty-cart.svg" id="image" alt="">
+          <p id="para">Your added items will apper here</p>
+        </div>
+     <div class="order-made">
+      <div class="total-order">
+        <p>Order Total</p>
+        <h2 id="total">$46.0</h2>
+      </div>
+      <div class="delivery">
+        <span
+          ><img src="assets/images/icon-carbon-neutral.svg" alt="" />This is a
+          <strong>Carbon Neutral</strong> delivery</span
+        >
+      </div>
+      <div class="submit">
+        <button id="submit">Confirm Order</button>
+      </div>
+     </div>
+        
+      </section>
+
+    </div>
+
+ <div class="alert">
+  <img src="assets/images/icon-order-confirmed.svg" alt="">
+ <h2>Order Confirmed</h2>
+ <p>We hope you enjoy your food</p>
+ <div class="submit">
+  <div class="customers-order">
+    <div class="order-flex">
+      <div class="flex-left">
+        <img src="assets/" alt="">
+      </div>
+      <div class="flex-right">
+
+      </div>
+    </div>
+  </div>
+  <button id="submit">Start new order</button>
+
+</div>
+ </div>
+
+    <!-- script -->
+    <script src="js/myscript.js"></script>
+  </body>
+</html>
