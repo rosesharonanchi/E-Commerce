@@ -6,14 +6,16 @@ let orderWrapper = document.querySelector(".order-container");
 let noItem = document.querySelector(".no-order");
 let orderMade = document.querySelector(".order-made");
 let myOrder = document.querySelectorAll(".my-order");
+const productsWrapper = document.getElementById("products");
 
 // ... rest of the product objects
-let products = [
+const products = [
   {
     id: 0,
     title: "Waffle",
     description: "Waffles with Berries",
     quantity: 0,
+    
     imageDesktop: "assets/images/image-waffle-thumbnail.jpg",
     price: 6.5,
     totalPrice: 0,
@@ -33,7 +35,7 @@ let products = [
     description: "Waffles with Berries",
     quantity: 0,
     imageDesktop: "assets/images/image-waffle-thumbnail.jpg",
-    price: 7.00,
+    price: 7.0,
     totalPrice: 0,
   },
   {
@@ -42,7 +44,7 @@ let products = [
     description: "Macaron Mix of Five",
     quantity: 0,
     imageDesktop: "assets/images/image-waffle-thumbnail.jpg",
-    price: 8.00,
+    price: 8.0,
     totalPrice: 0,
   },
   {
@@ -51,27 +53,27 @@ let products = [
     description: "Classic Tiramisu",
     quantity: 0,
     imageDesktop: "assets/images/image-waffle-thumbnail.jpg",
-    price: 5.50,
+    price: 5.5,
     totalPrice: 0,
   },
   {
     id: 5,
     title: "Baklava",
-    
+
     description: "Pistachio Baklava",
     quantity: 0,
     imageDesktop: "assets/images/image-waffle-thumbnail.jpg",
-    price: 4.00,
+    price: 4.0,
     totalPrice: 0,
   },
-  
+
   {
     id: 6,
     title: "Pie",
     description: "Lemon Meringue Pie",
     quantity: 0,
     imageDesktop: "assets/images/image-waffle-thumbnail.jpg",
-    price: 5.00,
+    price: 5.0,
     totalPrice: 0,
   },
   {
@@ -89,10 +91,66 @@ let products = [
     description: "Salted Caramel Brownie",
     quantity: 0,
     imageDesktop: "assets/images/image-waffle-thumbnail.jpg",
-    price: 5.50,
+    price: 5.5,
     totalPrice: 0,
   },
 ];
+
+// Displaying all the products to the screen
+let productsText = "";
+for (const product of products) {
+  productsText += `<div class="card">
+            <div class="image">
+              <img src="assets/images/image-creme-brulee-desktop.jpg" alt="" />
+            </div>
+            <div class="add">
+              <div class="add1">
+                <span cart-tray>
+                  <img src="assets/images/icon-add-to-cart.svg" alt="" />
+                </span>
+
+                <p>Add to Cart</p>
+              </div>
+              <div class="add2">
+                <div class="icons">
+                  <svg
+                    id="decrement"
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="10"
+                    height="2"
+                    viewBox="0 0 10 2"
+                  >
+                    <path fill="currentValue" d="M0 .375h10v1.25H0V.375Z" />
+                  </svg>
+                </div>
+                <div class="amount">0</div>
+                <div class="icons">
+                  <svg
+                    id="increment"
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="10"
+                    height="10"
+                    viewBox="0 0 10 10"
+                  >
+                    <path fill="currentValue" d="M10
+                    4.375H5.625V0h-1.25v4.375H0v1.25h4.375V10h1.25V5.625H10v-1.25Z"
+                    />
+                  </svg>
+                </div>
+              </div>
+            </div>
+            <div class="cart-description">
+              <p class="food-name">Creme Brulee</p>
+              <h5>Vanilla Bean creme Brulee</h5>
+              <span class="red">6.50</span>
+            </div>
+          </div>
+          
+ `;
+}
+
+productsWrapper.innerHTML = productsText;
+
 let orders = [];
 let updateTotal = () => {
   let myTotalPrice = products.reduce(
@@ -119,8 +177,8 @@ cards.forEach((card, i) => {
     myOrder.forEach((order, i) => {
       let deleteButton = order.querySelector(".delete-icon");
       deleteButton.addEventListener("click", () => {
-       console.log(order);
-       console.log(i);
+        console.log(order);
+        console.log(i);
       });
     });
   });
@@ -155,8 +213,7 @@ const upadateOrder = (index) => {
   } else {
     addNewOrder(order);
     orders.push(order);
-    updateTotal()
-    
+    updateTotal();
   }
 };
 
@@ -174,7 +231,7 @@ const addNewOrder = (order) => {
     <img src="assets/images/icon-remove-item.svg" alt="" />
   </div>
 </div>`;
-deleteOrder(order)
+  deleteOrder(order);
 };
 
 // const updateDetails = (order) => {
@@ -210,7 +267,6 @@ const updateDetails = (order) => {
       ".total-price"
     ).innerHTML = `$${order.totalPrice.toFixed(2)}`;
   }
-  
 };
 // deleteButton.forEach((button) => {
 //   button.addEventListener("click", (e) => {
@@ -218,35 +274,31 @@ const updateDetails = (order) => {
 //   });
 // });
 
-
-const deleteOrder = (order)=>{
+const deleteOrder = (order) => {
   let orderElement = document.querySelector(`#order${order.id}`);
-  let deleteButton = orderElement.querySelector('#deleteMe')
-  
-      deleteButton.addEventListener('click', ()=>{
-      // deleteButton.parentElement.style.display = 'none'
-       console.log(orders)
-       orders.splice(order.id ,1);
-       console.log(orders)
-       updateTotal();
+  let deleteButton = orderElement.querySelector("#deleteMe");
 
-        })
-   
-  
-}
+  deleteButton.addEventListener("click", () => {
+    // deleteButton.parentElement.style.display = 'none'
+    console.log(orders);
+    orders.splice(order.id, 1);
+    console.log(orders);
+    updateTotal();
+  });
+};
 
 // submit.addEventListener("click", () => {
 //   console.log('hello');
 //   console.log('hi');
 //   console.log(myOrder)
 //  });
-let ordersReceived = document.querySelector('.all-orders')
-let alert = document.querySelector('.alert')
-let body = document.querySelector('body')
-let container = document.querySelector('.container')
+let ordersReceived = document.querySelector(".all-orders");
+let alert = document.querySelector(".alert");
+let body = document.querySelector("body");
+let container = document.querySelector(".container");
 
- const receiveOrder = (order)=>{
- ordersReceived.innerHTML += `<div class="order-flex">
+const receiveOrder = (order) => {
+  ordersReceived.innerHTML += `<div class="order-flex">
       <div class="flex-left">
         <div></div>
         <div class="left-info">
@@ -260,21 +312,16 @@ let container = document.querySelector('.container')
       <div class="flex-right">
        <div class="total-price">$30.0</div>
       </div>
-    </div>`
-alert.style.display = 'block'
-alert.classList.add('show')
-// body.style.zIndex = '999'
-container.style.opacity = '.8'
-// container.style.visibility = 'hidden'
-body.style.backgroundColor = 'rgba(0, 0, 0, 0.6)'
-container.style.transition = 'opacity 0.8s, visibility 0.3s'
-container.style.pointerEvents = 'none'
-container.style.position = 'fixed'
-//container.style.backgroundColor = 'transparent'
-
- }
- submit.addEventListener(
-  'click', receiveOrder
- )
-
-
+    </div>`;
+  alert.style.display = "block";
+  alert.classList.add("show");
+  // body.style.zIndex = '999'
+  container.style.opacity = ".8";
+  // container.style.visibility = 'hidden'
+  body.style.backgroundColor = "rgba(0, 0, 0, 0.6)";
+  container.style.transition = "opacity 0.8s, visibility 0.3s";
+  container.style.pointerEvents = "none";
+  container.style.position = "fixed";
+  //container.style.backgroundColor = 'transparent'
+};
+submit.addEventListener("click", receiveOrder);
