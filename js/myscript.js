@@ -218,44 +218,63 @@ const updateDetails = (order) => {
 //   });
 // });
 
-// Delete Order
-
-// deleteButton.addEventListener("click", (e) => {
-//   e.parentElement.parentElement.remove();
-// });
-
-
-
-// let deleteButton = document.querySelector('#deleteMe');
-// console.log(deleteButton)
-// deleteButton.addEventListener("click", () => {
-//   console.log('hello');
-//   console.log('hi');
-//  });
-  
-// myOrder.forEach((order, i) => {
-//   let deleteButton = order.querySelector(".delete-icon");
-//   deleteButton.addEventListener("click", () => {
-//    console.log(order);
-//    console.log(i);
-//   });
-// });
 
 const deleteOrder = (order)=>{
   let orderElement = document.querySelector(`#order${order.id}`);
   let deleteButton = orderElement.querySelector('#deleteMe')
   
       deleteButton.addEventListener('click', ()=>{
-       deleteButton.parentElement.style.display = 'none'
-       console.log(order)
+      // deleteButton.parentElement.style.display = 'none'
+       console.log(orders)
+       orders.splice(order.id ,1);
+       console.log(orders)
+       updateTotal();
+
         })
    
   
-  
 }
 
-submit.addEventListener("click", () => {
-  console.log('hello');
-  console.log('hi');
-  console.log(myOrder)
- });
+// submit.addEventListener("click", () => {
+//   console.log('hello');
+//   console.log('hi');
+//   console.log(myOrder)
+//  });
+let ordersReceived = document.querySelector('.all-orders')
+let alert = document.querySelector('.alert')
+let body = document.querySelector('body')
+let container = document.querySelector('.container')
+
+ const receiveOrder = (order)=>{
+ ordersReceived.innerHTML += `<div class="order-flex">
+      <div class="flex-left">
+        <div></div>
+        <div class="left-info">
+          <p>Classic Tiramisu</p>
+          <div class="quantityPrice">
+            <span class="quantity">x1</span>
+            <div class="price">$5.0</div>
+          </div>
+        </div>
+      </div>
+      <div class="flex-right">
+       <div class="total-price">$30.0</div>
+      </div>
+    </div>`
+alert.style.display = 'block'
+alert.classList.add('show')
+// body.style.zIndex = '999'
+container.style.opacity = '.8'
+// container.style.visibility = 'hidden'
+body.style.backgroundColor = 'rgba(0, 0, 0, 0.6)'
+container.style.transition = 'opacity 0.8s, visibility 0.3s'
+container.style.pointerEvents = 'none'
+container.style.position = 'fixed'
+//container.style.backgroundColor = 'transparent'
+
+ }
+ submit.addEventListener(
+  'click', receiveOrder
+ )
+
+
