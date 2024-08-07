@@ -98,7 +98,7 @@
   
 }
 
-.order {
+.myorder {
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -117,7 +117,7 @@
   cursor: pointer;
   border: solid 2px black;
 }
-.order {
+.myorder {
   margin: 1rem;
   border-bottom: solid 6px rgba(196, 190, 190, 0.311);
 }
