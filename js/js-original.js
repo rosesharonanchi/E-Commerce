@@ -1,7 +1,7 @@
 let submit = document.querySelector("#submit");
-let cards = document.querySelectorAll(".card");
+// let cards = document.querySelectorAll(".card");
 let total = document.querySelector("#total");
-let orderWrapper = document.querySelector(".order-container");
+// let orderWrapper = document.querySelector(".order-container");
 
 let noItem = document.querySelector(".no-order");
 let orderMade = document.querySelector(".order-made");
@@ -15,9 +15,8 @@ const products = [
     title: "Waffle",
     description: "Waffles with Berries",
     quantity: 0,
-
-    imageDesktop: "assets/images/image-waffle-desktop.jpg",
     imageThumbnail: "assets/images/image-waffle-thumbnail.jpg",
+    imageDesktop: "assets/images/image-waffle-desktop.jpg",
     imageMobile: "assets/images/image-waffle-mobile.jpg",
     price: 6.5,
     totalPrice: 0,
@@ -27,8 +26,8 @@ const products = [
     title: "Creme Brulee",
     description: "Vanilla Bean Creme Brulee",
     quantity: 0,
-    imageDesktop: "assets/images/image-creme-brulee-desktop.jpg",
     imageThumbnail: "assets/images/image-creme-brulee-thumbnail.jpg",
+    imageDesktop: "assets/images/image-creme-brulee-desktop.jpg",
     imageMobile: "assets/images/image-creme-brulee-mobile.jpg",
     price: 6.5,
     totalPrice: 0,
@@ -39,8 +38,8 @@ const products = [
     title: "Macaron",
     description: "Macaron Mix of Five",
     quantity: 0,
-    imageDesktop: "assets/images/image-macaron-desktop.jpg",
     imageThumbnail: "assets/images/image-macaron-thumbnail.jpg",
+    imageDesktop: "assets/images/image-macaron-desktop.jpg",
     imageMobile: "assets/images/image-macaron-mobile.jpg",
     price: 8.0,
     totalPrice: 0,
@@ -50,8 +49,8 @@ const products = [
     title: "Tiramisu",
     description: "Classic Tiramisu",
     quantity: 0,
-    imageDesktop: "assets/images/image-tiramisu-desktop.jpg",
     imageThumbnail: "assets/images/image-tiramisu-thumbnail.jpg",
+    imageDesktop: "assets/images/image-tiramisu-desktop.jpg",
     imageMobile: "assets/images/image-tiramisu-mobile.jpg",
     price: 5.5,
     totalPrice: 0,
@@ -62,8 +61,8 @@ const products = [
 
     description: "Pistachio Baklava",
     quantity: 0,
-    imageDesktop: "assets/images/image-baklava-desktop.jpg",
     imageThumbnail: "assets/images/image-baklava-thumbnail.jpg",
+    imageDesktop: "assets/images/image-baklava-desktop.jpg",
     imageMobile: "assets/images/image-baklava-mobile.jpg",
     price: 4.0,
     totalPrice: 0,
@@ -74,8 +73,8 @@ const products = [
     title: "Pie",
     description: "Lemon Meringue Pie",
     quantity: 0,
-    imageDesktop: "assets/images/image-meringue-desktop.jpg",
     imageThumbnail: "assets/images/image-meringue-thumbnail.jpg",
+    imageDesktop: "assets/images/image-meringue-desktop.jpg",
     imageMobile: "assets/images/image-meringue-mobile.jpg",
     price: 5.0,
     totalPrice: 0,
@@ -85,8 +84,8 @@ const products = [
     title: "Cake",
     description: "Red Velvet Cake",
     quantity: 0,
-    imageDesktop: "assets/images/image-cake-desktop.jpg",
     imageThumbnail: "assets/images/image-cake-thumbnail.jpg",
+    imageDesktop: "assets/images/image-cake-desktop.jpg",
     imageMobile: "assets/images/image-cake-mobile.jpg",
     price: 4.5,
     totalPrice: 0,
@@ -96,8 +95,8 @@ const products = [
     title: "Brownie",
     description: "Salted Caramel Brownie",
     quantity: 0,
-    imageDesktop: "assets/images/image-brownie-desktop.jpg",
     imageThumbnail: "assets/images/image-brownie-thumbnail.jpg",
+    imageDesktop: "assets/images/image-brownie-desktop.jpg",
     imageMobile: "assets/images/image-brownie-mobile.jpg",
     price: 5.5,
     totalPrice: 0,
@@ -107,22 +106,24 @@ const products = [
     title: "Panna Cotta",
     description: "Vanilla Panna Cotta",
     quantity: 0,
-    imageDesktop: "assets/images/image-panna-cotta-desktop.jpg",
     imageThumbnail: "assets/images/image-panna-cotta-thumbnail.jpg",
+    imageDesktop: "assets/images/image-panna-cotta-desktop.jpg",
     imageMobile: "assets/images/image-panna-cotta-mobile.jpg",
-    price: 4.0,
+    price: 7.0,
     totalPrice: 0,
   },
 ];
 
 // Displaying all the products to the screen
 let productsText = "";
+
 for (const product of products) {
   productsText += `<div class="card">
-          <input type="hidden" id="productId" value="${product.id}">
-            <div class="image">
-              <img src="${product.imageDesktop}" alt="" />
-            </div>
+            <div class = 'image'>
+           <img src="${product.imageDesktop}" alt="${
+    product.title
+  } image" class="desktop-image">
+          </div>
             <div class="add">
               <div class="add1">
                 <span cart-tray>
@@ -132,8 +133,9 @@ for (const product of products) {
                 <p>Add to Cart</p>
               </div>
               <div class="add2">
-                <div class="icons"  id="decrement">
+                <div class="icons">
                   <svg
+                    id="decrement"
                     xmlns="http://www.w3.org/2000/svg"
                     width="10"
                     height="2"
@@ -143,8 +145,9 @@ for (const product of products) {
                   </svg>
                 </div>
                 <div class="amount">0</div>
-                <div class="icons" id="increment">
+                <div class="icons">
                   <svg
+                    id="increment"
                     xmlns="http://www.w3.org/2000/svg"
                     width="10"
                     height="10"
@@ -165,8 +168,8 @@ for (const product of products) {
           </div>
           
  `;
+  console.log(product);
 }
-
 
 productsWrapper.innerHTML = productsText;
 
@@ -176,7 +179,6 @@ let updateTotal = () => {
     (acc, product) => acc + product.totalPrice,
     0
   );
-  
   total.innerHTML = `$${myTotalPrice.toFixed(2)}`;
 };
 
