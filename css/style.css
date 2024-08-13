@@ -15,13 +15,15 @@ body {
 .card {
   max-width: 25rem;
   position: relative;
+  margin: auto;
 }
 .container {
-  padding: 0 6rem;
+  padding: 4rem 1rem;
   background-color: hsl(13, 31%, 94%);
   display: flex;
   gap: 2rem;
 }
+
 .add {
   background-color: white;
   padding: 1rem;
@@ -96,12 +98,13 @@ body {
   grid-column-gap: 1.5rem;
   grid-row-gap: 3rem;
 }
+
 /* cart */
 
 .cart {
   background-color: white;
   padding: 1rem 1rem;
-  width: 30%;
+  /* width: 30%; */
   height: fit-content;
 }
 
@@ -129,7 +132,7 @@ body {
   border-bottom: solid 6px rgba(196, 190, 190, 0.311);
 }
 .submit button,
-#submit1 {
+.submit1 button {
   background-color: hsl(14, 86%, 42%);
   border: none;
   color: white;
@@ -181,9 +184,9 @@ my-span {
 
 /* alert */
 .alert {
+  position: absolute;
   width: 25rem;
   height: auto;
-  position: fixed;
   margin: auto;
   border-radius: 1rem;
   box-shadow: 10px 20px 23px rgba(0, 0, 0, 0.3);
@@ -207,11 +210,7 @@ my-span {
   display: flex;
   gap: 0.5rem;
 }
-.flex-left img {
-  width: 25%;
-  height: 25%;
-  border-radius: 0.5rem;
-}
+
 .quantityPrice {
   display: flex;
   gap: 1rem;
@@ -231,4 +230,75 @@ my-span {
 #order-confirmed,
 #order-para {
   margin-bottom: 0.5rem;
+}
+.theTotal {
+  display: flex;
+  justify-content: space-between;
+  padding: 0.5rem;
+}
+.events {
+  pointer-events: none;
+}
+.refresh {
+  cursor: pointer;
+}
+#mobile {
+  display: none;
+}
+.food-name {
+  color: gray;
+}
+.cart-description > * {
+  margin-bottom: 0.4rem;
+}
+/* Responsive design */
+@media (max-width: 676px) {
+  .container {
+    flex-direction: column;
+    padding: 2rem;
+  }
+  .card {
+    margin-bottom: 0.5rem;
+  }
+  .cards {
+    display: block;
+    margin: 0;
+    padding: 0;
+  }
+  #desktop {
+    display: none;
+  }
+  #mobile {
+    display: block;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+  }
+  .deserts {
+    width: 100%;
+  }
+  .cart {
+    width: 100%;
+  }
+  .alert {
+    top: 5rem;
+    left: 0;
+    width: 100%;
+  }
+  .deserts h1 {
+    text-align: center;
+    font-size: 1.6;
+  }
+}
+
+/* Medium screens */
+@media (max-width: 1024px) and (min-width: 676px) {
+  .cards {
+    grid-template-columns: repeat(2, 1fr);
+   
+  }
+  .cart{
+    width: 35%;
+  }
+ 
 }

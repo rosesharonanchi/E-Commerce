@@ -9,7 +9,7 @@ let myOrder = document.querySelectorAll(".my-order");
 const productsWrapper = document.getElementById("products");
 
 // ... rest of the product objects
-const products = [
+let products = [
   {
     id: 0,
     title: "Waffle",
@@ -121,7 +121,9 @@ for (const product of products) {
   productsText += `<div class="card">
           <input type="hidden" id="productId" value="${product.id}">
             <div class="image">
-              <img src="${product.imageDesktop}" alt="" />
+              <img src="${product.imageDesktop}" alt="" id="desktop" />
+              <img src="${product.imageMobile}" alt="" id= "mobile" />
+             
             </div>
             <div class="add">
               <div class="add1">
@@ -132,8 +134,8 @@ for (const product of products) {
                 <p>Add to Cart</p>
               </div>
               <div class="add2">
-                <div class="icons"  id="decrement">
-                  <svg
+                <div class="icons"  onclick="decrement(${product.id})">
+                  <svg id="decrement"
                     xmlns="http://www.w3.org/2000/svg"
                     width="10"
                     height="2"
@@ -142,9 +144,11 @@ for (const product of products) {
                     <path fill="currentValue" d="M0 .375h10v1.25H0V.375Z" />
                   </svg>
                 </div>
-                <div class="amount">0</div>
-                <div class="icons" id="increment">
-                  <svg
+                <div class="amount" id="amount-${product.id}">${
+    product.quantity
+  }</div>
+                <div class="icons" onclick="increment(${product.id})">
+                  <svg id="increment"
                     xmlns="http://www.w3.org/2000/svg"
                     width="10"
                     height="10"
@@ -166,79 +170,162 @@ for (const product of products) {
           
  `;
 }
-
-
 productsWrapper.innerHTML = productsText;
+const orders = [];
 
-let orders = [];
-let updateTotal = () => {
-  let myTotalPrice = products.reduce(
-    (acc, product) => acc + product.totalPrice,
-    0
-  );
-  
-  total.innerHTML = `$${myTotalPrice.toFixed(2)}`;
-};
-
-let number = document.querySelectorAll(".number");
-cards.forEach((card, i) => {
-  let add = card.querySelector("#increment");
-  let remove = card.querySelector("#decrement");
-  let amount = card.querySelector(".amount");
-
-  add.addEventListener("click", () => {
-    products[i].quantity++;
-    products[i].totalPrice = products[i].quantity * products[i].price;
-    amount.innerHTML = products[i].quantity;
-    updateTotal();
-    upadateOrder(i);
-    noItem.style.display = "none";
-    orderMade.style.display = "block";
-    myOrder.forEach((order, i) => {
-      let deleteButton = order.querySelector(".delete-icon");
-      deleteButton.addEventListener("click", () => {
-        console.log(order);
-        console.log(i);
-      });
-    });
+const increment = (id) => {
+  // console.log("Befevug")
+  const index = products.findIndex((p) => {
+    return p.id === id;
   });
-
-  remove.addEventListener("click", () => {
-    if (products[i].quantity <= 0) {
-      amount.innerHTML = 0;
-      removeOrder();
-    } else {
-      products[i].quantity--;
-      products[i].totalPrice = products[i].quantity * products[i].price;
-      amount.innerHTML = `${products[i].quantity}`;
-      upadateOrder(i);
-      updateTotal();
-    }
-  });
-});
-
-const upadateOrder = (index) => {
-  let order = {
-    id: products[index].id,
-    title: products[index].title,
-    quantity: products[index].quantity,
-    price: products[index].price,
-    description: products[index].description,
-    totalPrice: products[index].totalPrice,
-    index: index,
+  // console.log(index);
+  const product = products[index];
+  // console.log(product);
+  const quantity = product.quantity + 1;
+  // console.log(quantity);
+  const updatedProduct = {
+    ...product,
+    quantity,
+    totalPrice: product.price,
   };
-  let existingOrder = orders.find((o) => o.id === order.id);
-  if (existingOrder) {
-    updateDetails(order);
+  // console.log(updatedProduct)
+
+  products.splice(index, 1, updatedProduct);
+  // console.log(products[index]);
+  // Updating the html
+  const amountEl = document.getElementById(`amount-${product.id}`);
+  amountEl.innerText = updatedProduct.quantity;
+
+  // orders
+  const orderIndex = orders.findIndex((o) => o.id === updatedProduct.id);
+  if (orderIndex === -1) {
+    // Add a new order
+    orders.push(updatedProduct);
+    console.log(orders);
   } else {
-    addNewOrder(order);
-    orders.push(order);
-    updateTotal();
+    // Update that order
+    const order = orders[orderIndex];
+    const updatedOrder = {
+      ...order,
+      totalPrice: order.price * quantity,
+      quantity,
+    };
+    orders.splice(orderIndex, 1, updatedOrder);
+    console.log(orders);
   }
+  if (orders.length !== 0) {
+    console.log(`The length is :${orders.length} `);
+    orderMade.style.display = "block";
+    console.log(orders);
+    noItem.style.display = "none";
+  }
+  updateCart();
+  updateTotal();
+};
+const remove = (id) => {
+  // console.log("Befevug")
+  const index = products.findIndex((p) => {
+    return p.id === id;
+  });
+  // console.log(index);
+  const product = products[index];
+  // console.log(product);
+  const quantity = 0;
+  // console.log(quantity);
+  const updatedProduct = {
+    ...product,
+    quantity,
+    totalPrice: product.price,
+  };
+  // console.log(updatedProduct)
+
+  products.splice(index, 1, updatedProduct);
+  // console.log(products[index]);
+  // Updating the html
+  const amountEl = document.getElementById(`amount-${product.id}`);
+  amountEl.innerText = updatedProduct.quantity;
+
+  // orders
+  const orderIndex = orders.findIndex((o) => o.id === updatedProduct.id);
+  if (orderIndex === -1) {
+    // Add a new order
+   return
+  } else {
+    // Update that order
+    const order = orders[orderIndex];
+    const updatedOrder = {
+      ...order,
+      totalPrice: order.price * quantity,
+      quantity,
+    };
+    orders.splice(orderIndex, 1, updatedOrder);
+    orders.splice(orderIndex, 1)
+    console.log(orders);
+  }
+  if (orders.length == 0) {
+    orderMade.style.display = "none";
+
+    noItem.style.display = "block";
+  }
+  updateCart();
+  updateTotal();
+};
+const decrement = (id) => {
+  // console.log("Befevug")
+  console.log(orders);
+  const index = products.findIndex((p) => p.id === id);
+  const product = products[index];
+  const quantity = product.quantity - 1;
+  const updatedProduct = {
+    ...product,
+    quantity,
+    totalPrice: product.price,
+  };
+
+  const amountEl = document.getElementById(`amount-${product.id}`);
+
+  if (product.quantity > 0) {
+    const updatedProduct = { ...product, quantity: product.quantity - 1 };
+    products.splice(index, 1, updatedProduct);
+    amountEl.innerText = updatedProduct.quantity;
+    // console.log(updatedProduct.quantity);
+
+    // orders
+    const orderIndex = orders.findIndex((o) => o.id === updatedProduct.id);
+    if (orderIndex === -1) {
+      // Add a new order
+      return orders;
+    } else {
+      // Update that order
+      const order = orders[orderIndex];
+      const updatedOrder = {
+        ...order,
+        totalPrice: order.price * quantity,
+        quantity,
+      };
+      if (updatedOrder.quantity === 0) {
+        orders.splice(orderIndex, 1);
+      } else {
+        orders.splice(orderIndex, 1, updatedOrder);
+      }
+
+      // console.log(orders);
+      // console.log(updatedOrder.quantity)
+    }
+  }
+  if (orders.length === 0) {
+    (orderMade.style.display = "none"), (noItem.style.display = "block");
+    console.log(`The length is : 0 `);
+  }
+
+  updateCart();
+  updateTotal();
 };
 
-const addNewOrder = (order) => {
-  orderWrapper.innerHTML += `<div class="myorder" id="order${order.id}">
+const updateCart = () => {
+  let ordersText = "";
+  for (const order of orders) {
+    ordersText += `<div class="myorder" id="order${order.id}">
   <div class="details-wrapper" >
     <div class="food">${order.title}</div>
     <div class="details">
@@ -247,101 +334,65 @@ const addNewOrder = (order) => {
       <div class="total-price">$${order.totalPrice.toFixed(2)}</div>
     </div>
   </div>
-  <div class="delete-icon" id=deleteMe>
+  <div class="delete-icon" id=deleteMe onclick = "remove(${order.id})">
     <img src="assets/images/icon-remove-item.svg" alt="" />
   </div>
 </div>`;
-  deleteOrder(order);
-};
-
-// const updateDetails = (order) => {
-//   let orderElement = orderWrapper.querySelector(
-//     `.myorder:nth-child(${order.id + 1})`
-//   );
-//   orderElement.querySelector(".number").innerHTML = `x${order.quantity}`;
-//   orderElement.querySelector(
-//     ".total-price"
-//   ).innerHTML = `$${order.totalPrice.toFixed(2)}`;
-// };
-// const updateDetails = (order) => {
-//     let orderElement = orderWrapper.querySelectorAll(".myorder")[order.id];
-//     if (orderElement) {
-//       orderElement.querySelector(".number").innerHTML = `x${order.quantity}`;
-//       orderElement.querySelector(
-//         ".total-price"
-//       ).innerHTML = `$${order.totalPrice.toFixed(2)}`;
-//     }
-//   };
-const updateDetails = (order) => {
-  //   let orderElement = document.querySelector(
-  //     `.myorder:nth-child(${order.index + 1})`
-  //   );
-
-  let orderElement = document.querySelector(`#order${order.id}`);
-
-  // console.log(order.quantity);
-  // console.log(orderElement);
-  if (orderElement) {
-    orderElement.querySelector(".number").innerHTML = `x${order.quantity}`;
-    orderElement.querySelector(
-      ".total-price"
-    ).innerHTML = `$${order.totalPrice.toFixed(2)}`;
   }
-};
-// deleteButton.forEach((button) => {
-//   button.addEventListener("click", (e) => {
-//     e.parentElement.parentElement.remove();
-//   });
-// });
-
-const deleteOrder = (order) => {
-  let orderElement = document.querySelector(`#order${order.id}`);
-  let deleteButton = orderElement.querySelector("#deleteMe");
-
-  deleteButton.addEventListener("click", () => {
-    // deleteButton.parentElement.style.display = 'none'
-    console.log(orders);
-    orders.splice(order.id, 1);
-    console.log(orders);
-    updateTotal();
-  });
+  orderWrapper.innerHTML = ordersText;
 };
 
-// submit.addEventListener("click", () => {
-//   console.log('hello');
-//   console.log('hi');
-//   console.log(myOrder)
-//  });
+let mytotal;
+let updateTotal = () => {
+  let myTotalPrice = orders.reduce(
+    (acc, product) => acc + product.totalPrice,
+    0
+  );
+  mytotal = myTotalPrice.toFixed(2);
+  total.innerHTML = mytotal;
+};
+
+
 let ordersReceived = document.querySelector(".all-orders");
 let alert = document.querySelector(".alert");
 let body = document.querySelector("body");
 let container = document.querySelector(".container");
-
+let finalTotal = document.querySelector("#finalTotal");
 const receiveOrder = (order) => {
-  ordersReceived.innerHTML += `<div class="order-flex">
-      <div class="flex-left">
-        <div></div>
-        <div class="left-info">
-          <p>Classic Tiramisu</p>
-          <div class="quantityPrice">
-            <span class="quantity">x1</span>
-            <div class="price">$5.0</div>
-          </div>
+  for (order of orders) {
+    ordersReceived.innerHTML += `<div class="order-flex">
+    <div class="flex-left">
+      <div>
+       <img src="${order.imageThumbnail}" alt="" />
+      </div>
+      <div class="left-info">
+        <p>${order.description}</p>
+        <div class="quantityPrice">
+          <span class="quantity">x${order.quantity}</span>
+          <div class="price">$${order.price.toFixed(2)}</div>
         </div>
       </div>
-      <div class="flex-right">
-       <div class="total-price">$30.0</div>
-      </div>
-    </div>`;
+    </div>
+    <div class="flex-right">
+     <div class="total-price">$${order.totalPrice.toFixed(2)}</div>
+    
+    </div>
+  </div>`;
+  }
+ container.classList.add("events");
+  finalTotal.innerHTML = `$${mytotal}`;
   alert.style.display = "block";
-  alert.classList.add("show");
-  // body.style.zIndex = '999'
-  container.style.opacity = ".8";
-  // container.style.visibility = 'hidden'
-  body.style.backgroundColor = "rgba(0, 0, 0, 0.6)";
-  container.style.transition = "opacity 0.8s, visibility 0.3s";
-  container.style.pointerEvents = "none";
-  container.style.position = "fixed";
-  //container.style.backgroundColor = 'transparent'
+  body.style.zIndex = "999";
+  container.style.opacity = ".9";
+  container.style.transition = "opacity 0.8s";
+  
+  container.style.backgroundColor = ''
 };
 submit.addEventListener("click", receiveOrder);
+
+let refresh = document.querySelector('#submit1')
+refresh.addEventListener(
+  "click", ()=>{
+    location.reload();
+  }
+)
