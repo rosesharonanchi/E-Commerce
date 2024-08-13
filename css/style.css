@@ -184,7 +184,7 @@ my-span {
 
 /* alert */
 .alert {
-  position: absolute;
+  position: fixed;
   width: 25rem;
   height: auto;
   margin: auto;
@@ -281,7 +281,7 @@ my-span {
     width: 100%;
   }
   .alert {
-    top: 5rem;
+    top: 6rem;
     left: 0;
     width: 100%;
   }
@@ -299,6 +299,10 @@ my-span {
   }
   .cart{
     width: 35%;
+  }
+  .alert{
+    top: 5rem;
+    left: 30%
   }
  
 }
